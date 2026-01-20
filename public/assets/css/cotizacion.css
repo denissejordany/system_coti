@@ -1,0 +1,196 @@
+/* === FONDO GENERAL === */
+body {
+    background: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+/* === CONTENEDOR UNIFICADO === */
+.form-cotizacion-box {
+    background: #fff;
+    padding: 35px;
+    border-radius: 14px;
+    max-width: 880px;
+    margin: 30px auto;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+}
+
+/* Secciones internas (sólo separan visualmente) */
+.form-datos-section,
+.form-cobertura-section {
+    margin-bottom: 40px;
+}
+
+/* Línea separadora sutil */
+.form-cobertura-section {
+    padding-top: 30px;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* === CONTENEDORES GENERALES (MISMO DISEÑO, CLASES DISTINTAS) === */
+
+
+
+/* === TÍTULOS === */
+.form-datos-title,
+.form-cobertura-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* === GRID PRINCIPAL === */
+.form-datos-grid,
+.form-cobertura-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 25px;
+}
+
+/* Para inputs que ocupan toda la fila */
+.full {
+    grid-column: span 2;
+}
+
+/* === GRUPO DE CAMPOS === */
+.form-datos-group,
+.form-cobertura-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-datos-group label,
+.form-cobertura-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-datos-group input,
+.form-datos-group select,
+.form-cobertura-group input,
+.form-cobertura-group select {
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.form-datos-group input:focus,
+.form-datos-group select:focus,
+.form-cobertura-group input:focus,
+.form-cobertura-group select:focus {
+    border-color: #1b4bbb;
+    box-shadow: 0 0 3px rgba(27, 75, 187, 0.4);
+}
+
+/* === BOTÓN SUBMIT === */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    background: #1b4bbb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: #163d92;
+}
+
+/* === DEPENDIENTES === */
+.dependientes-header {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-add-dep {
+    background: #1b4bbb;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-add-dep:hover {
+    background: #163d92;
+}
+
+.dependientes-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dependiente-item {
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.remove-dep {
+    background: #d9534f;
+    color: white;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.remove-dep:hover {
+    background: #b94542;
+}
+
+/* === CLÍNICAS === */
+.form-cobertura-clinicas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.form-cobertura-check-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.form-cobertura-check-item input {
+    transform: scale(1.2);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 850px) {
+    .form-datos-grid,
+    .form-cobertura-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
