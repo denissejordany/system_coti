@@ -1,6 +1,6 @@
 <?php
 
-require_once "../app/models/Login.php";
+require_once "../app/models/LoginModel.php";
 
 class LoginController {
 
@@ -65,11 +65,11 @@ class LoginController {
         header("Location: " . BASE_URL . "login");
     }
 
-    public function registrarUsuario()
-    {
+    public function registrarUsuario(){
+
         if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+         session_start();
+         }
 
         $dni = $_POST['dni'] ?? null;
         $password = $_POST['password'] ?? null;
@@ -90,12 +90,14 @@ class LoginController {
         }
 
         // Registrar
-        $registro = $model->registrar($dni, $password, $cod_asesor);
+        $registro = $model->registrarUser($dni, $password, $cod_asesor);
 
         if ($registro) {
             header("Location: " . BASE_URL . "login?registro=ok");
         } else {
             header("Location: " . BASE_URL . "login?register_error=Error al registrar");
         }
-    }
+    
+  }
+        
 }

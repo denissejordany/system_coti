@@ -17,4 +17,10 @@ class AdminController {
 
         require_once "../app/views/admin/dashboard.php";
     }
+    public function cotizacion()
+    {
+        // Redirige al controlador correcto
+        header("Location: /SYSTEM_COTI/public/cotizacion/realizar");
+        exit;
+    }
 }

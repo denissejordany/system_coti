@@ -23,8 +23,7 @@ class Login extends Conexion {
 
     return false; // Login incorrecto
 }
-
-    public function usuarioExiste($dni)
+ public function usuarioExiste($dni)
 {
     $sql = "SELECT id FROM usuarios WHERE dni = :dni LIMIT 1";
     $query = $this->pdo->prepare($sql);
@@ -34,7 +33,7 @@ class Login extends Conexion {
     return $query->fetch();
 }
 
-public function registrar($dni, $password, $cod_asesor)
+public function registrarUser($dni, $password, $cod_asesor)
 {
     $sql = "INSERT INTO usuarios (dni, password, cod_asesor, id_rol)
             VALUES (:dni, :password, :cod_asesor, 2)";
@@ -51,4 +50,6 @@ public function registrar($dni, $password, $cod_asesor)
     return $query->execute();
 }
 
+
 }
+
