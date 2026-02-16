@@ -1,0 +1,110 @@
+/* RESET GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #f8fafc; /* o el fondo que uses */
+}
+
+/* CONTENEDOR GENERAL */
+
+.contenedor-clinicas{
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 10px 20px;
+}
+
+
+/* TITULOS */
+
+.contenedor-clinicas h2,
+.contenedor-clinicas h3{
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+
+/* FORMULARIO */
+
+#formClinica{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: end;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+#formClinica label{
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#formClinica input{
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+
+/* CAMPOS */
+
+.campo-form{
+    flex: 1;
+    min-width: 250px;
+}
+
+
+/* BOTON */
+
+#formClinica button{
+    padding: 9px 18px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    height: 38px;
+}
+
+#formClinica button:hover{
+    background: #1d4ed8;
+}
+
+
+/* TABLA */
+
+.tabla-clinicas{
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    font-size: 14px;
+}
+
+.tabla-clinicas th{
+    background: #f1f5f9;
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.tabla-clinicas td{
+    padding: 9px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.tabla-clinicas tr:hover{
+    background: #f8fafc;
+}

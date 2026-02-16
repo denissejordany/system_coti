@@ -10,6 +10,19 @@
     z-index: 999;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+.nav-logo h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+}
+
+.nav-logo h4 {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+}
 
 .nav-container {
     width: 95%;
@@ -21,12 +34,7 @@
 }
 
 /* Logo / Título */
-.nav-logo h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0;
-    color: #fff;
-}
+
 
 /* ====== MENÚ PRINCIPAL ====== */
 .nav-links {

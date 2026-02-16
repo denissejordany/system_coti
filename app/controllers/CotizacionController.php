@@ -1,23 +1,35 @@
 <?php
 
-require_once __DIR__ . "/../models/ClinicasModel.php";
+require_once __DIR__ . "/../models/ClinicaModel.php";
 
 class CotizacionController {
 
-    public function realizar()
-    {
-        $mode = "realizar";
+public function realizar()
+{
+    // UI
+    $page_title = "Realizar Cotización";
+    $active = "realizar";
 
-        $clinicaModel = new ClinicasModel();
-        $clinicas = $clinicaModel->getAll();
+    $extra_css = [
+        'assets/css/forms.css',
+        'assets/css/cotizacion.css'
+    ];
 
-        require_once __DIR__ . "/../views/cliente/cotizacion.php";
-    }
+    // Datos
+    $clinicaModel = new ClinicaModel();
+    $clinicas = $clinicaModel->getAll();
+
+    // Vista + Layout
+    require_once __DIR__ . "/../views/layout/header.php";
+    require_once __DIR__ . "/../views/cotizaciones/realizar.php";
+    require_once __DIR__ . "/../views/layout/footer.php";
+}
+
 
     public function ver()
     {
         $mode = "ver";
-        require_once __DIR__ . "/../views/cliente/cotizacion.php";
+        require_once __DIR__ . "/../views/cotizaciones/ver.php";
     }
     public function guardar() 
 {
