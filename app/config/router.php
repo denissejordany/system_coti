@@ -32,19 +32,19 @@ class Router {
 
             // /admin/clinicas
             if ($segments[1] === 'clinicas') {
-                $this->load('ClinicaController', 'index');
+                $this->load('ClinicaController', 'clinicas');
                 return;
             }
 
             // /admin/planes
             if ($segments[1] === 'planes') {
-                $this->load('PlanController', 'index');
+                $this->load('PlanController', 'planes');
                 return;
             }
 
             // /admin/reportes
             if ($segments[1] === 'reportes') {
-                $this->load('ReporteController', 'index');
+                $this->load('ReporteController', 'reportes');
                 return;
             }
 
@@ -73,13 +73,13 @@ class Router {
 
             // /cliente/realizar
             if ($segments[1] === 'realizar') {
-                $this->load('ClienteController', 'realizar');
+                $this->load('CotizacionController', 'realizar');
                 return;
             }
 
             // /cliente/ver
             if ($segments[1] === 'ver') {
-                $this->load('ClienteController', 'ver');
+                $this->load('CotizacionController', 'ver');
                 return;
             }
         }

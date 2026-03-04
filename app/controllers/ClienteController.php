@@ -14,33 +14,22 @@ class ClienteController {
         }
     }
 
-    public function dashboard() {
+     public function dashboard()
+{
+    $this->verificarCliente();
 
-        $this->verificarCliente();
+    // UI
+    $active = 'dashboard';
+    $page_title = 'Panel de Cliente';
 
-        $active = 'dashboard';
-        $page_title = 'Panel del Cliente';
+    $extra_css = [
+        'assets/css/dashboard.css'
+    ];
 
-        require_once APP_PATH . 'views/dashboard/cliente.php';
-    }
+    // Layout + Vista
+    require_once __DIR__ . "/../views/layout/header.php";
+    require_once __DIR__ . "/../views/dashboard/cliente.php";
+    require_once __DIR__ . "/../views/layout/footer.php";
+}
 
-    public function realizar() {
-
-        $this->verificarCliente();
-
-        $active = 'realizar';
-        $page_title = 'Nueva Cotización';
-
-        require_once APP_PATH . 'views/cliente/realizar.php';
-    }
-
-    public function ver() {
-
-        $this->verificarCliente();
-
-        $active = 'ver';
-        $page_title = 'Mis Cotizaciones';
-
-        require_once APP_PATH . 'views/cliente/ver.php';
-    }
 }

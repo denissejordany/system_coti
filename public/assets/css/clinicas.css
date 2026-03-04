@@ -1,16 +1,9 @@
-/* RESET GENERAL */
-* {
+body {
+    background: #f1f1f1;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-
-html, body {
-    width: 100%;
-    height: 100%;
-    background: #f8fafc; /* o el fondo que uses */
-}
-
 /* CONTENEDOR GENERAL */
 
 .contenedor-clinicas{

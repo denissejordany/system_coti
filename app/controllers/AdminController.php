@@ -17,17 +17,22 @@ class AdminController {
         }
     }
 
-    /**
-     * Dashboard principal
-     */
-    public function dashboard() {
+ public function dashboard()
+{
+    $this->verificarAdmin();
 
-        $this->verificarAdmin();
+    // UI
+    $active = 'dashboard';
+    $page_title = 'Panel de Administración';
 
-        $active = 'dashboard';
-        $page_title = 'Panel de Administración';
+    $extra_css = [
+        'assets/css/dashboard.css'
+    ];
 
-        require_once APP_PATH . 'views/dashboard/admin.php';
-    }
+    // Layout + Vista
+    require_once __DIR__ . "/../views/layout/header.php";
+    require_once __DIR__ . "/../views/dashboard/admin.php";
+    require_once __DIR__ . "/../views/layout/footer.php";
+}
 
 }
