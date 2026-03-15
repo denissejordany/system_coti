@@ -1,7 +1,6 @@
 <?php
 
 class AdminController {
-
     /**
      * Verifica si el usuario es admin
      */

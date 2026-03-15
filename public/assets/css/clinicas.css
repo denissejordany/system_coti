@@ -1,103 +1,370 @@
-body {
-    background: #f1f1f1;
-    margin: 0;
-    padding: 0;
+body{
+    background:#f1f5f9;
+    margin:0;
+    padding:0;
     font-family: Arial, sans-serif;
 }
+
 /* CONTENEDOR GENERAL */
 
 .contenedor-clinicas{
-    width: 100%;
-    max-width: 1100px;
-    margin: 20px auto;
-    padding: 10px 20px;
+    width:100%;
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px;
 }
-
 
 /* TITULOS */
 
-.contenedor-clinicas h2,
-.contenedor-clinicas h3{
-    color: #1e293b;
-    margin-bottom: 15px;
+.contenedor-clinicas h2{
+    color:#1e293b;
+    margin-bottom:20px;
 }
 
+.contenedor-clinicas h3{
+    color:#1e293b;
+    margin:25px 0 15px 0;
+}
+
+/* CARD SECCIONES */
+
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
 
 /* FORMULARIO */
 
 #formClinica{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: end;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 25px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    align-items:flex-end;
 }
-
-#formClinica label{
-    font-weight: 600;
-    margin-bottom: 5px;
-    display: block;
-}
-
-#formClinica input{
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
 
 /* CAMPOS */
 
 .campo-form{
-    flex: 1;
-    min-width: 250px;
+    flex:1;
+    min-width:220px;
 }
 
+#formClinica label{
+    font-weight:600;
+    margin-bottom:5px;
+    display:block;
+    color:#334155;
+}
+
+#formClinica input{
+    width:100%;
+    padding:9px 1px;
+    border:1px solid #cbd5e1;
+    border-radius:6px;
+    font-size:14px;
+}
 
 /* BOTON */
 
 #formClinica button{
-    padding: 9px 18px;
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    height: 38px;
+    padding:9px 18px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    height:38px;
+    margin-top:22px;
 }
 
 #formClinica button:hover{
-    background: #1d4ed8;
+    background:#1d4ed8;
 }
-
 
 /* TABLA */
 
 .tabla-clinicas{
-    width: 100%;
-    border-collapse: collapse;
-    background: transparent;
-    font-size: 14px;
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
 }
 
 .tabla-clinicas th{
-    background: #f1f5f9;
-    padding: 10px;
-    text-align: center;
-    font-weight: 600;
+    background:#f1f5f9;
+    padding:12px;
+    text-align:center;
+    font-weight:600;
 }
 
 .tabla-clinicas td{
-    padding: 9px;
-    border-bottom: 1px solid #e2e8f0;
-    text-align: center;
+    padding:10px;
+    border-bottom:1px solid #e2e8f0;
+    text-align:center;
 }
 
 .tabla-clinicas tr:hover{
-    background: #f8fafc;
+    background:#f8fafc;
+}
+/* BOTONES ----------------------------*/
+/* columna acciones */
+
+.acciones{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+/* botones */
+
+.btn-editar,
+.btn-eliminar{
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* editar */
+
+.btn-editar{
+    background:#f59e0b;
+}
+
+.btn-editar:hover{
+    background:#d97706;
+}
+
+/* eliminar */
+
+.btn-eliminar{
+    background:#ef4444;
+}
+
+.btn-eliminar:hover{
+    background:#dc2626;
+}
+/* MODAL EDITAR*/
+/* ===== MODAL ===== */
+
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+/* caja del modal */
+
+.modal-content{
+    background:#ffffff;
+    padding:25px 28px;
+    border-radius:10px;
+    width:420px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* titulo */
+
+.modal-content h3{
+    margin-top:0;
+    margin-bottom:18px;
+    color:#1e293b;
+}
+
+/* campos */
+
+.modal-content .campo-form{
+    margin-bottom:15px;
+}
+
+.modal-content label{
+    display:block;
+    font-weight:600;
+    margin-bottom:5px;
+    color:#334155;
+}
+
+.modal-content input{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid #cbd5e1;
+    border-radius:6px;
+    font-size:14px;
+}
+
+/* focus input */
+
+.modal-content input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 2px rgba(37,99,235,0.15);
+}
+
+/* botones */
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:18px;
+}
+
+/* boton actualizar */
+
+.btn-actualizar{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn-actualizar:hover{
+    background:#1d4ed8;
+}
+
+/* boton cancelar */
+
+.btn-cancelar{
+    background:#e2e8f0;
+    color:#1e293b;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-cancelar:hover{
+    background:#cbd5e1;
+}
+/* RESPONSIVE ----------*/
+.tabla-responsive{
+    width:100%;
+    overflow-x:auto;
+}
+/* ========================= */
+/* TABLET */
+/* ========================= */
+
+@media (max-width: 900px){
+
+.contenedor-clinicas{
+    max-width:95%;
+}
+
+/* formulario más compacto */
+
+#formClinica{
+    gap:12px;
+}
+
+.campo-form{
+    min-width:180px;
+}
+
+/* tabla más compacta */
+
+.tabla-clinicas th,
+.tabla-clinicas td{
+    padding:8px;
+    font-size:13px;
+}
+
+/* modal más pequeño */
+
+.modal-content{
+    width:90%;
+    max-width:380px;
+}
+
+}
+/* ========================= */
+/* MOVIL */
+/* ========================= */
+
+@media (max-width: 600px){
+
+/* contenedor */
+
+.contenedor-clinicas{
+    padding:0 15px;
+}
+
+/* formulario vertical */
+
+#formClinica{
+    flex-direction:column;
+    align-items:stretch;
+}
+
+/* campos ocupan todo */
+
+.campo-form{
+    width:100%;
+}
+
+/* boton formulario */
+
+#formClinica button{
+    width:100%;
+    margin-top:10px;
+}
+
+/* tabla */
+
+.tabla-clinicas{
+    font-size:13px;
+}
+
+/* botones acciones más grandes para touch */
+
+.btn-editar,
+.btn-eliminar{
+    width:38px;
+    height:38px;
+}
+
+/* acciones centradas */
+
+.acciones{
+    gap:12px;
+}
+
+/* modal */
+
+.modal-content{
+    width:92%;
+    padding:20px;
+}
+
+/* botones modal */
+
+.modal-actions{
+    flex-direction:column;
+}
+
+.btn-actualizar,
+.btn-cancelar{
+    width:100%;
+}
+
 }
