@@ -4,7 +4,14 @@ body{
     padding:0;
     font-family: Arial, sans-serif;
 }
+*{
+box-sizing:border-box;
+}
 
+html, body{
+width:100%;
+overflow-x:hidden;
+}
 /* CONTENEDOR GENERAL */
 
 .contenedor-clinicas{
@@ -260,6 +267,80 @@ body{
 .tabla-responsive{
     width:100%;
     overflow-x:auto;
+}
+/*-----------------------------BUSCADOR----*/
+/* BUSCADOR */
+
+.buscador-tabla{
+margin-bottom:15px;
+display:flex;
+justify-content:flex-end;
+}
+
+#buscarClinica{
+width:250px;
+padding:8px 10px;
+border:1px solid #cbd5e1;
+border-radius:6px;
+font-size:14px;
+}
+
+#buscarClinica:focus{
+outline:none;
+border-color:#2563eb;
+box-shadow:0 0 0 2px rgba(37,99,235,0.15);
+}
+/*-----------PAGINACION---------*/
+/* PAGINACION */
+
+.paginacion{
+display:flex;
+justify-content:center;
+margin-top:20px;
+gap:6px;
+flex-wrap:wrap;
+}
+
+.paginacion button{
+border:none;
+background:#e2e8f0;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.paginacion button:hover{
+background:#cbd5e1;
+}
+
+.paginacion button.activa{
+background:#2563eb;
+color:white;
+}/* MODAL CONFIRMACION */
+
+.modal-confirmacion{
+max-width:380px;
+text-align:center;
+}
+
+.modal-confirmacion p{
+color:#475569;
+margin:15px 0;
+font-size:14px;
+}
+
+.btn-confirmar{
+background:#ef4444;
+color:white;
+border:none;
+padding:8px 16px;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+}
+
+.btn-confirmar:hover{
+background:#dc2626;
 }
 /* ========================= */
 /* TABLET */

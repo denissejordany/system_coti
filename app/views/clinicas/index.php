@@ -11,7 +11,6 @@
         <input type="text" name="nombre" required>
     </div>
 
-
     <div class="campo-form">
         <label>Sede</label>
         <input type="text" name="sede" required>
@@ -24,6 +23,14 @@
 </div>
 
 <h3>Listado de Clínicas</h3>
+<div class="buscador-tabla">
+
+<input 
+type="text" 
+id="buscarClinica" 
+placeholder="🔎 Buscar clínica...">
+
+</div>
 <div class="card tabla-responsive">
 
 <table class="tabla-clinicas">
@@ -54,16 +61,15 @@
 <i class="fa-solid fa-pen"></i>
 </button>
 
-<a href="<?= BASE_URL ?>clinica/eliminarClinica?id=<?= $c['id'] ?>"
-   class="btn-eliminar"
-   title="Eliminar"
-   onclick="return confirm('¿Eliminar esta clínica?')">
-
-<i class="fa-solid fa-trash"></i>
-
-</a>
+<button 
+class="btn-eliminar"
+title="Eliminar"
+onclick="confirmarEliminar(<?= $c['id'] ?>)">
+<i class="fas fa-trash"></i>
+</button>
 
 </td>
+</tr>
 <!---MODAAAAAAL EDITAR --->
 <div id="modalClinica" class="modal">
 
@@ -94,13 +100,36 @@
 
 </div>
 </div>
-</div>
-</tr>
 
 <?php endforeach; ?>
 
 </tbody>
-
 </table>
+<div class="paginacion" id="paginacionClinicas"></div>
+</div>
 
+<!------------MODAL CONFIRMACION------->
+<div id="modalConfirmacion" class="modal">
+
+<div class="modal-content modal-confirmacion">
+
+<h3 id="tituloConfirmacion">Confirmar acción</h3>
+
+<p id="mensajeConfirmacion">
+¿Seguro que deseas realizar esta acción?
+</p>
+
+<div class="modal-actions">
+
+<button id="btnCancelarConfirmacion" class="btn-cancelar">
+Cancelar
+</button>
+
+<button id="btnAceptarConfirmacion" class="btn-confirmar">
+Confirmar
+</button>
+
+</div>
+
+</div>
 </div>

@@ -31,6 +31,7 @@ public function registrarClinica()
 
         $clinicaModel = new ClinicaModel();
         $clinicaModel->crear($nombre, $sede);
+        $_SESSION['toast'] = "Clínica Registrada correctamente";
 
         header("Location: " . BASE_URL . "admin/clinicas");
         exit;
@@ -44,9 +45,12 @@ public function eliminarClinica()
 
         $clinicaModel = new ClinicaModel();
         $clinicaModel->eliminar($id);
+        /*----- TOAST ----*/
+$_SESSION['toast'] = "Clínica eliminada correctamente";
 
         header("Location: " . BASE_URL . "admin/clinicas");
         exit;
+
     }
 }
 public function getClinica()
