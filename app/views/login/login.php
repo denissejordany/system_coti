@@ -61,26 +61,29 @@
 
             <form action="<?php echo BASE_URL; ?>login/registrarUsuario" method="POST">
 
-                <input type="hidden" name="rol" value="cliente">
+    <input type="hidden" name="rol" value="cliente">
 
-                <label>DNI</label>
-                <input type="text" name="dni" pattern="\d{8}" maxlength="8"
-                       placeholder="Ingresa tu DNI" required>
+    <label>DNI</label>
+    <input type="text" name="dni" pattern="\d{8}" maxlength="8"
+           placeholder="Ingresa tu DNI" required>
 
-                <label>Contraseña</label>
-                <input type="password" name="password" placeholder="Crea una contraseña" required>
-                <small style="color:#555;">Sugerencia: usa tu DNI como contraseña inicial</small>
-<br><br>
-                <label>Código de asesor (opcional)</label>
-                <input type="text" name="cod_asesor" placeholder="Ejemplo: A123">
+    <label>Contraseña</label>
+    <input type="password" name="password" placeholder="Crea una contraseña" required>
+    <small style="color:#555;">Sugerencia: usa tu DNI como contraseña inicial</small>
 
-                <button type="submit" class="btn-login">Registrarme</button>
+    <br><br>
 
-                <p class="switch-text" style="margin-top:20px;">
-                    ¿Ya tienes cuenta? 
-                    <span class="switch-link" onclick="showLogin()">Inicia sesión</span>
-                </p>
-            </form>
+    <label>Código de asesor (opcional)</label>
+    <input type="text" name="cod_asesor" placeholder="Ejemplo: A123">
+
+    <button type="submit" class="btn-login">Registrarme</button>
+
+    <p class="switch-text" style="margin-top:20px;">
+        ¿Ya tienes cuenta? 
+        <span class="switch-link" onclick="showLogin()">Inicia sesión</span>
+    </p>
+</form>
+
         </div>
     </div>
 </div>

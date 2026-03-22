@@ -1,24 +1,50 @@
 <?php
 
-require_once __DIR__ . "/../models/ClinicasModel.php";
+require_once __DIR__ . "/../models/ClinicaModel.php";
 
 class CotizacionController {
 
-    public function realizar()
-    {
-        $mode = "realizar";
+public function realizar()
+{
+    // UI
+    $page_title = "Realizar Cotización";
+    $active = "realizar";
 
-        $clinicaModel = new ClinicasModel();
-        $clinicas = $clinicaModel->getAll();
+    $extra_css = [
+        'assets/css/cotizacion.css'
+    ];
+    // Datos
+    $clinicaModel = new ClinicaModel();
+    $clinicas = $clinicaModel->getAll();
 
-        require_once __DIR__ . "/../views/cliente/cotizacion.php";
-    }
+    // Vista + Layout
+    require_once __DIR__ . "/../views/layout/header.php";
+    require_once __DIR__ . "/../views/cotizaciones/realizar.php";
+    require_once __DIR__ . "/../views/layout/footer.php";
+}
 
-    public function ver()
-    {
-        $mode = "ver";
-        require_once __DIR__ . "/../views/cliente/cotizacion.php";
-    }
+
+   public function ver()
+{
+    // UI
+    $page_title = "Ver Cotizaciones";
+    $active = "ver";
+
+    $extra_css = [
+    
+        'assets/css/vercotizacion.css'
+    ];
+
+    // (Opcional luego: traer cotizaciones del modelo)
+    // $model = new CotizacionModel();
+    // $cotizaciones = $model->getAllByUser($_SESSION['usuario']['id']);
+
+    // Layout + Vista
+    require_once __DIR__ . "/../views/layout/header.php";
+    require_once __DIR__ . "/../views/cotizaciones/ver.php";
+    require_once __DIR__ . "/../views/layout/footer.php";
+}
+
     public function guardar() 
 {
     $model = new CotizacionModel();

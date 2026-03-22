@@ -1,20 +1,37 @@
 <?php
 
-
 class AdminController {
-
-    public function dashboard() {
+    /**
+     * Verifica si el usuario es admin
+     */
+    private function verificarAdmin() {
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-   echo "<h1>Bienvenido ADMIN</h1>";
-        echo "<p>Aquí irá tu dashboard.</p>";
+
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] != 1) {
             header("Location: " . BASE_URL . "login");
             exit;
         }
-
-        require_once "../app/views/admin/dashboard.php";
     }
+
+ public function dashboard()
+{
+    $this->verificarAdmin();
+
+    // UI
+    $active = 'dashboard';
+    $page_title = 'Panel de Administración';
+
+    $extra_css = [
+        'assets/css/dashboard.css'
+    ];
+
+    // Layout + Vista
+    require_once __DIR__ . "/../views/layout/header.php";
+    require_once __DIR__ . "/../views/dashboard/admin.php";
+    require_once __DIR__ . "/../views/layout/footer.php";
+}
+
 }

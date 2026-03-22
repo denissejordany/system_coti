@@ -10,6 +10,19 @@
     z-index: 999;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+.nav-logo h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+}
+
+.nav-logo h4 {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+}
 
 .nav-container {
     width: 95%;
@@ -21,12 +34,7 @@
 }
 
 /* Logo / Título */
-.nav-logo h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0;
-    color: #fff;
-}
+
 
 /* ====== MENÚ PRINCIPAL ====== */
 .nav-links {
@@ -82,6 +90,52 @@
 #menu-toggle {
     display: none;
 }
+/*------------FOOTER TOAST------------*/
+/* TOAST */
+
+#toast-container{
+position:fixed;
+top:100px;
+right:20px;
+z-index:2000;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.toast{
+min-width:250px;
+padding:12px 16px;
+border-radius:8px;
+color:white;
+font-size:14px;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+animation:fadeIn 0.3s ease;
+}
+
+/* tipos */
+
+.toast.success{
+background:#22c55e;
+}
+
+.toast.error{
+background:#ef4444;
+}
+
+/* animacion */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(-10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+/*-------------*/
 
 @media (max-width: 900px) {
 

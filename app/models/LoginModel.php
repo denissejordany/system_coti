@@ -1,30 +1,30 @@
 <?php
-require_once "Conexion.php";
+require_once "ConexionModel.php";
 
-class Login extends Conexion {
+class LoginModel extends Conexion {
 
     public function __construct() {
         parent::__construct();
     }
 
- public function loginUsuario($dni, $password) {
-    // Buscar solo por DNI
+public function loginUsuario($dni, $password) {
+
     $sql = "SELECT * FROM usuarios WHERE dni = :dni LIMIT 1";
+
     $query = $this->pdo->prepare($sql);
     $query->bindParam(':dni', $dni);
     $query->execute();
 
-    $user = $query->fetch();
+    $user = $query->fetch(PDO::FETCH_ASSOC);
 
-    // Si el usuario existe, verificar contraseña
     if ($user && password_verify($password, $user['password'])) {
-        return $user; // Login correcto
+        return $user;
     }
 
-    return false; // Login incorrecto
+    return false;
 }
 
-    public function usuarioExiste($dni)
+ public function usuarioExiste($dni)
 {
     $sql = "SELECT id FROM usuarios WHERE dni = :dni LIMIT 1";
     $query = $this->pdo->prepare($sql);
@@ -34,7 +34,7 @@ class Login extends Conexion {
     return $query->fetch();
 }
 
-public function registrar($dni, $password, $cod_asesor)
+public function registrarUser($dni, $password, $cod_asesor)
 {
     $sql = "INSERT INTO usuarios (dni, password, cod_asesor, id_rol)
             VALUES (:dni, :password, :cod_asesor, 2)";
@@ -51,4 +51,6 @@ public function registrar($dni, $password, $cod_asesor)
     return $query->execute();
 }
 
+
 }
+
