@@ -44,91 +44,92 @@
             </tbody>
         </table>
     </div>
+</div> <!-- ✅ CIERRE CORRECTO -->
 
-    <!-- FORMULARIO -->
+   
     <!-- ========================= -->
-<!-- MODAL PLAN -->
-<!-- ========================= -->
-<div id="modalPlan" class="modal">
+    <!-- MODAL PLAN -->
+    <!-- ========================= -->
+    <div id="modalPlan" class="modal">
 
-    <div class="modal-content modal-xl">
+        <div class="modal-content modal-xl">
 
-        <div class="modal-header">
-            <h3>Crear Plan</h3>
-            <button onclick="cerrarModalPlan()">✖</button>
+            <div class="modal-header">
+                <h3>Crear Plan</h3>
+                <button onclick="cerrarModalPlan()">✖</button>
+            </div>
+
+            <form id="formPlan" method="POST">
+
+                <!-- ========================= -->
+                <!-- DATOS PRINCIPALES -->
+                <!-- ========================= -->
+
+                <h4>Datos del Plan</h4>
+
+                <div class="campo-form">
+                    <label>Nombre del Plan</label>
+                    <input type="text" name="nombre_plan" required>
+                </div>
+
+                <div class="campo-form">
+                    <label>Compañía</label>
+                    <select name="id_compania" required>
+                        <option value="">Seleccione</option>
+                        <?php foreach ($companias as $c): ?>
+                            <option value="<?= $c['id'] ?>">
+                                <?= $c['nombre'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="campo-form">
+                    <label>Suma Asegurada</label>
+                    <input type="number" step="0.01" name="suma_asegurada" required>
+                </div>
+
+                <div class="campo-form">
+                    <label>URL Cartilla PDF</label>
+                    <input type="text" name="nombre_url">
+                </div>
+
+                <hr>
+
+                <!-- REDES -->
+                <h4>Redes del Plan</h4>
+
+                <div id="contenedor-redes"></div>
+
+                <button type="button" id="btnAgregarRed" class="btn-agregar">
+                    ➕ Agregar Red
+                </button>
+
+                <hr>
+
+                <!-- PRECIOS -->
+                <h4>Precios por Edad</h4>
+
+                <div id="contenedor-precios"></div>
+
+                <button type="button" id="btnAgregarPrecio" class="btn-agregar">
+                    ➕ Agregar Precio
+                </button>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn-guardar">
+                        💾 Guardar Plan
+                    </button>
+
+                    <button type="button" onclick="cerrarModalPlan()" class="btn-cancelar">
+                        Cancelar
+                    </button>
+                </div>
+
+            </form>
+
         </div>
-
-        <form id="formPlan" method="POST">
-
-            <!-- ========================= -->
-            <!-- DATOS PRINCIPALES -->
-            <!-- ========================= -->
-
-            <h4>Datos del Plan</h4>
-
-            <div class="campo-form">
-                <label>Nombre del Plan</label>
-                <input type="text" name="nombre_plan" required>
-            </div>
-
-            <div class="campo-form">
-                <label>Compañía</label>
-                <select name="id_compania" required>
-                    <option value="">Seleccione</option>
-                    <?php foreach ($companias as $c): ?>
-                        <option value="<?= $c['id'] ?>">
-                            <?= $c['nombre'] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <div class="campo-form">
-                <label>Suma Asegurada</label>
-                <input type="number" step="0.01" name="suma_asegurada" required>
-            </div>
-
-            <div class="campo-form">
-                <label>URL Cartilla PDF</label>
-                <input type="text" name="nombre_url">
-            </div>
-
-            <hr>
-
-            <!-- REDES -->
-            <h4>Redes del Plan</h4>
-
-            <div id="contenedor-redes"></div>
-
-            <button type="button" id="btnAgregarRed" class="btn-agregar">
-                ➕ Agregar Red
-            </button>
-
-            <hr>
-
-            <!-- PRECIOS -->
-            <h4>Precios por Edad</h4>
-
-            <div id="contenedor-precios"></div>
-
-            <button type="button" id="btnAgregarPrecio" class="btn-agregar">
-                ➕ Agregar Precio
-            </button>
-
-            <div class="modal-actions">
-                <button type="submit" class="btn-guardar">
-                    💾 Guardar Plan
-                </button>
-
-                <button type="button" onclick="cerrarModalPlan()" class="btn-cancelar">
-                    Cancelar
-                </button>
-            </div>
-
-        </form>
-
     </div>
-</div>
 
 <!-- ========================= -->
 <!-- TEMPLATE RED (OCULTO) -->
