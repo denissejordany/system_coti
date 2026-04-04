@@ -3,10 +3,27 @@
 class Router {
 
     public function run() {
+        if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$publicRoutes = ['login', 'login/validar'];
 
         $url = $_GET['url'] ?? '';
         $url = trim($url, '/');
+if (!in_array($url, $publicRoutes)) {
 
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: " . BASE_URL . "login");
+        exit;
+    }
+
+    // Validar que tenga rol
+    if (!isset($_SESSION['usuario']['rol'])) {
+        session_destroy();
+        header("Location: " . BASE_URL . "login");
+        exit;
+    }
+}
         // Default
         if (empty($url)) {
             $this->load('LoginController', 'index');
@@ -14,7 +31,20 @@ class Router {
         }
 
         $segments = explode('/', $url);
+$rol = $_SESSION['usuario']['rol'] ?? null;
 
+// 🔐 PROTECCIÓN POR ROL
+if ($segments[0] === 'admin' && $rol != 1) {
+    session_destroy();
+    header("Location: " . BASE_URL . "login");
+    exit;
+}
+
+if ($segments[0] === 'cliente' && $rol != 2) {
+    session_destroy();
+    header("Location: " . BASE_URL . "login");
+    exit;
+}
         /*
          * ============================
          * RUTAS ESPECIALES POR ROL
