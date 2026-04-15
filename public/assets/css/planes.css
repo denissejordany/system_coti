@@ -21,11 +21,12 @@ body {
 
 .modal-content {
     background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 600px;
+    padding: 25px;
+    border-radius: 12px;
+    width: 700px;
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .modal-xl {
@@ -37,9 +38,258 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.modal-header h3 {
+    margin: 0;
+}
 
+.modal-header button {
+    background: transparent;
+    font-size: 18px;
+}
 .modal-actions {
     margin-top: 20px;
     display: flex;
     gap: 10px;
+}
+/*-----scroll--------*/
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+/*-------------------CONTENEDOR-PLAN----------*/
+.contenedor-planes {
+    padding: 20px 30px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 15px 0;
+}
+/*-----------TABLA----------------*/
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.tabla-planes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla-planes th {
+    background: #f5f7fb;
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.tabla-planes td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.tabla-planes tr:hover {
+    background: #f9fbff;
+}
+/*----ACCIONS-----*/
+.header-acciones {
+    display: flex;
+    justify-content: flex-end;
+}
+/*--------------BOTONES EDITAR Y ELIMINAR------------------*/
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.btn-crear {
+    background: #1a4bd8;
+    color: #fff;
+}
+
+.btn-crear:hover {
+    background: #153bb5;
+}
+
+.btn-editar {
+    background: #ffc107;
+}
+
+.btn-eliminar {
+    background: #dc3545;
+    color: #fff;
+}
+
+.btn-agregar {
+    background: #28a745;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.btn-guardar {
+    background: #1a4bd8;
+    color: #fff;
+}
+
+.btn-cancelar {
+    background: #6c757d;
+    color: #fff;
+}
+/*---------FORM-----------*/
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.campo-form label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.campo-form input,
+.campo-form select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.campo-form input:focus,
+.campo-form select:focus {
+    outline: none;
+    border-color: #1a4bd8;
+}
+/*---------BLOQUES DE RED---------*/
+.bloque-red {
+    background: #f9fafc;
+    border: 1px solid #e3e7ef;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.bloque-red h4 {
+    margin-top: 0;
+}
+.bloque-red .campo-form label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+}
+/*--clinica--*/
+.clinicas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .clinicas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .clinicas-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.item-clinica {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+/*----------precio-------------*/
+/*precio*/
+.fila-precio {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    background: #f9fafc;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.fila-precio input {
+    width: 110px;
+}
+
+.check-rango {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-eliminar-precio {
+    background: #f9fafc;
+    color: #fff;
+}
+/*------------COLUMNAS EN EL FORMULARIO -------*/
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.bloque-red {
+    position: relative; /* CLAVE */
+}
+
+/* Botón tipo X */
+.btn-eliminar-red {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+
+    width: 26px;
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-eliminar-red:hover {
+    background: #d9363e;
+    transform: scale(1.1);
+}
+/* Tablet */
+@media (min-width: 768px) {
+    .form-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .form-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

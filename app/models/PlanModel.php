@@ -43,7 +43,8 @@ class PlanModel {
     }
 
     public function guardarPlanCompleto($data)
-    {
+{
+
         try {
 
             $this->db->beginTransaction();
@@ -91,46 +92,48 @@ class PlanModel {
                     // =========================
                     // 2.1 CLINICAS POR RED
                     // =========================
-                    if (!empty($data['red_clinicas'][$i])) {
+                   if (empty($data['red_clinicas'][$i])) {
+    throw new Exception("Debe seleccionar al menos una clínica por red");
+            }
+    foreach ($data['red_clinicas'][$i] as $idClinica) {
 
-                        foreach ($data['red_clinicas'][$i] as $idClinica) {
+    $sqlClinica = "INSERT INTO red_plan_clinicas 
+        (id_red_plan, id_clinica)
+        VALUES (:red, :clinica)";
 
-                            $sqlClinica = "INSERT INTO red_plan_clinicas 
-                                (id_red_plan, id_clinica)
-                                VALUES (:red, :clinica)";
+    $stmtClinica = $this->db->prepare($sqlClinica);
 
-                            $stmtClinica = $this->db->prepare($sqlClinica);
-
-                            $stmtClinica->execute([
-                                ':red'      => $idRed,
-                                ':clinica'  => $idClinica
-                            ]);
-                        }
-                    }
+    $stmtClinica->execute([
+        ':red'      => $idRed,
+        ':clinica'  => $idClinica
+    ]);
+     }
                 }
             }
 
             // =========================
             // 3. PRECIOS POR EDAD
             // =========================
-            if (!empty($data['edad_inicio'])) {
+           if (!empty($data['edad_inicio'])) {
 
-                foreach ($data['edad_inicio'] as $i => $edadInicio) {
+    foreach ($data['edad_inicio'] as $i => $edadInicio) {
 
-                    $sqlPrecio = "INSERT INTO plan_precios_edad
-                        (id_plan, edad_inicio, edad_fin, precio)
-                        VALUES (:plan, :inicio, :fin, :precio)";
+        $sqlPrecio = "INSERT INTO plan_precios_edad
+            (id_plan, edad_inicio, edad_fin, precio)
+            VALUES (:plan, :inicio, :fin, :precio)";
 
-                    $stmtPrecio = $this->db->prepare($sqlPrecio);
+        $stmtPrecio = $this->db->prepare($sqlPrecio);
 
-                    $stmtPrecio->execute([
-                        ':plan'   => $idPlan,
-                        ':inicio' => $edadInicio,
-                        ':fin'    => $data['edad_fin'][$i],
-                        ':precio' => $data['precio'][$i]
-                    ]);
-                }
-            }
+        $stmtPrecio->execute([
+            ':plan'   => $idPlan,
+            ':inicio' => $edadInicio,
+            ':fin'    => isset($data['edad_fin'][$i]) && $data['edad_fin'][$i] !== ''
+                            ? $data['edad_fin'][$i]
+                            : null,
+            ':precio' => $data['precio'][$i]
+        ]);
+    }
+ }
 
             // =========================
             // TODO OK
@@ -142,7 +145,7 @@ class PlanModel {
             $this->db->rollBack();
             throw $e;
         }
-    }
+}
 
     public function eliminarPlan($id)
     {
@@ -175,4 +178,20 @@ class PlanModel {
             throw $e;
         }
     }
+    public function obtenerPlanes()
+{
+    $sql = "SELECT 
+                p.id,
+                p.nombre_plan,
+                p.suma_asegurada,
+                c.nombre AS compania
+            FROM planes p
+            INNER JOIN companias c ON c.id = p.id_compania
+            ORDER BY p.id DESC";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }

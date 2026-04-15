@@ -56,7 +56,7 @@
 
             <div class="modal-header">
                 <h3>Crear Plan</h3>
-                <button onclick="cerrarModalPlan()">✖</button>
+                
             </div>
 
             <form id="formPlan" method="POST">
@@ -66,7 +66,7 @@
                 <!-- ========================= -->
 
                 <h4>Datos del Plan</h4>
-
+<div class="form-row">
                 <div class="campo-form">
                     <label>Nombre del Plan</label>
                     <input type="text" name="nombre_plan" required>
@@ -83,7 +83,8 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-
+</div>
+<div class="form-row">
                 <div class="campo-form">
                     <label>Suma Asegurada</label>
                     <input type="number" step="0.01" name="suma_asegurada" required>
@@ -93,7 +94,7 @@
                     <label>URL Cartilla PDF</label>
                     <input type="text" name="nombre_url">
                 </div>
-
+</div>
                 <hr>
 
                 <!-- REDES -->
@@ -137,41 +138,43 @@
 
 <template id="template-red">
     <div class="bloque-red">
-
-        <h4>Red</h4>
-
+<button type="button" class="btn-eliminar-red">✖</button>
         <div class="campo-form">
             <label>Nombre de la Red</label>
-            <input type="text" name="red_nombre[]">
+           <input type="text" class="red-nombre" name="red_nombre[]"required>
         </div>
 
-        <div class="campo-form">
-            <label>Clínicas</label>
-            <select name="red_clinicas[INDEX][]" multiple>
-                <?php foreach ($clinicas as $cl): ?>
-                    <option value="<?= $cl['id'] ?>">
-                        <?= $cl['nombre'] ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+<div class="campo-form">
+    <label>Clínicas</label>
 
+    <div class="clinicas-grid">
+        <?php foreach ($clinicas as $cl): ?>
+            <label class="item-clinica">
+                <input type="checkbox" class="red-clinica" name="red_clinicas[INDEX][]" value="<?= $cl['id'] ?>">
+                <?= $cl['nombre'] ?>
+            </label>
+        <?php endforeach; ?>
+    </div>
+</div>
+            
+        
+        <div class="form-row">
         <div class="campo-form">
             <label>Deducible Ambulatorio</label>
-            <input type="number" step="0.01" name="red_ambulatorio[]">
+            <input type="number" class="red-ambulatorio" name="red_ambulatorio[]"required>
         </div>
 
         <div class="campo-form">
             <label>Deducible Hospitalario</label>
-            <input type="number" step="0.01" name="red_hospitalario[]">
+            <input type="number" class="red-hospitalario" name="red_hospitalario[]"required>
         </div>
-
-        <button type="button" class="btn-eliminar-red">
-            ❌ Eliminar Red
-        </button>
+       
+        
 
         <hr>
-    </div>
+         </div>
+         </div>
+        
 </template>
 
 <!-- ========================= -->
@@ -179,27 +182,20 @@
 <!-- ========================= -->
 
 <template id="template-precio">
-    <div class="bloque-precio">
+    <div class="bloque-precio fila-precio">
 
-        <div class="campo-form">
-            <label>Edad Inicio</label>
-            <input type="number" name="edad_inicio[]">
-        </div>
+        <input type="number" name="edad_inicio[]" min="0" max="100" step="1" placeholder="Edad inicio" required>
 
-        <div class="campo-form">
-            <label>Edad Fin</label>
-            <input type="number" name="edad_fin[]">
-        </div>
+        <label class="check-rango">
+            <input type="checkbox" class="toggle-rango">
+            Rango
+        </label>
 
-        <div class="campo-form">
-            <label>Precio</label>
-            <input type="number" step="0.01" name="precio[]">
-        </div>
+       <input type="number" name="edad_fin[]" min="0" max="100" step="1"placeholder="Edad Fin" disabled>
 
-        <button type="button" class="btn-eliminar-precio">
-            ❌ Eliminar
-        </button>
+        <input type="number" step="0.01" name="precio[]" placeholder="Precio" required>
 
-        <hr>
+        <button type="button" class="btn-eliminar-precio">❌</button>
+
     </div>
 </template>

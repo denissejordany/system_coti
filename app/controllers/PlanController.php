@@ -74,4 +74,26 @@ class PlanController {
             ]);
         }
     }
+    public function listar()
+{
+    header('Content-Type: application/json');
+
+    try {
+
+        require_once __DIR__ . '/../models/PlanModel.php';
+
+        $model = new PlanModel();
+
+        $planes = $model->obtenerPlanes();
+
+        echo json_encode($planes);
+
+    } catch (Exception $e) {
+
+        echo json_encode([
+            "success" => false,
+            "message" => $e->getMessage()
+        ]);
+    }
+}
 }
