@@ -1,201 +1,93 @@
-<h2>📊 Gestión de Planes</h2>
-
-<div class="contenedor-planes">
-
-    <hr>
-    <h3>Listado de Planes</h3>
-
-    <div class="card tabla-responsive">
-        <div class="header-acciones">
-            <button class="btn-crear" onclick="abrirModalPlan()">
-                ➕ Crear Nuevo Plan
-            </button>
-        </div>
-        <table class="tabla-planes">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Compañía</th>
-                    <th>Suma Asegurada</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($planes as $p): ?>
-                    <tr>
-                        <td><?= $p['id'] ?></td>
-                        <td><?= $p['nombre_plan'] ?></td>
-                        <td><?= $p['compania'] ?></td>
-                        <td><?= $p['suma_asegurada'] ?></td>
-
-                        <td class="acciones">
-                            <button class="btn-editar" onclick="editarPlan(<?= $p['id'] ?>)">
-                                ✏️
-                            </button>
-
-                            <button class="btn-eliminar" onclick="eliminarPlan(<?= $p['id'] ?>)">
-                                🗑️
-                            </button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+<div class="p-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="card-title text-secondary m-0">Listado de Planes</h5>
     </div>
-</div> <!-- ✅ CIERRE CORRECTO -->
 
-   
-    <!-- ========================= -->
-    <!-- MODAL PLAN -->
-    <!-- ========================= -->
-    <div id="modalPlan" class="modal">
-
-        <div class="modal-content modal-xl">
-
-            <div class="modal-header">
-                <h3>Crear Plan</h3>
-                
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        
+        <div class="card-header bg-white border-0 p-4 pb-0">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold text-dark m-0">Gestión de Planes</h5>
+                    <p class="text-muted small m-0">Administra y organiza los planes de seguros disponibles.</p>
+                </div>
+                <button class="btn btn-primary rounded-pill px-4 shadow-sm d-flex align-items-center gap-2" onclick="abrirModalPlan()">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Crear Nuevo Plan</span>
+                </button>
             </div>
-
-            <form id="formPlan" method="POST">
-
-                <!-- ========================= -->
-                <!-- DATOS PRINCIPALES -->
-                <!-- ========================= -->
-
-                <h4>Datos del Plan</h4>
-<div class="form-row">
-                <div class="campo-form">
-                    <label>Nombre del Plan</label>
-                    <input type="text" name="nombre_plan" required>
-                </div>
-
-                <div class="campo-form">
-                    <label>Compañía</label>
-                    <select name="id_compania" required>
-                        <option value="">Seleccione</option>
-                        <?php foreach ($companias as $c): ?>
-                            <option value="<?= $c['id'] ?>">
-                                <?= $c['nombre'] ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-</div>
-<div class="form-row">
-                <div class="campo-form">
-                    <label>Suma Asegurada</label>
-                    <input type="number" step="0.01" name="suma_asegurada" required>
-                </div>
-
-                <div class="campo-form">
-                    <label>URL Cartilla PDF</label>
-                    <input type="text" name="nombre_url">
-                </div>
-</div>
-                <hr>
-
-                <!-- REDES -->
-                <h4>Redes del Plan</h4>
-
-                <div id="contenedor-redes"></div>
-
-                <button type="button" id="btnAgregarRed" class="btn-agregar">
-                    ➕ Agregar Red
-                </button>
-
-                <hr>
-
-                <!-- PRECIOS -->
-                <h4>Precios por Edad</h4>
-
-                <div id="contenedor-precios"></div>
-
-                <button type="button" id="btnAgregarPrecio" class="btn-agregar">
-                    ➕ Agregar Precio
-                </button>
-
-                <div class="modal-actions">
-                    <button type="submit" class="btn-guardar">
-                        💾 Guardar Plan
-                    </button>
-
-                    <button type="button" onclick="cerrarModalPlan()" class="btn-cancelar">
-                        Cancelar
-                    </button>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-
-<!-- ========================= -->
-<!-- TEMPLATE RED (OCULTO) -->
-<!-- ========================= -->
-
-<template id="template-red">
-    <div class="bloque-red">
-<button type="button" class="btn-eliminar-red">✖</button>
-        <div class="campo-form">
-            <label>Nombre de la Red</label>
-           <input type="text" class="red-nombre" name="red_nombre[]"required>
         </div>
 
-<div class="campo-form">
-    <label>Clínicas</label>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-3 text-uppercase text-muted small fw-bold border-0" style="width: 80px;">ID</th>
+                            <th class="text-uppercase text-muted small fw-bold border-0">Detalles del Plan</th>
+                            <th class="text-uppercase text-muted small fw-bold border-0">Compañía</th>
+                            <th class="text-uppercase text-muted small fw-bold border-0">Suma Asegurada</th>
+                            <th class="text-center text-uppercase text-muted small fw-bold border-0">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border-top-0">
+                        <?php 
+                            $planes = $planes ?? []; 
+                            if (!empty($planes)): 
+                                foreach ($planes as $p): 
+                        ?>
+                            <tr class="transition-all">
+                                <td class="ps-3">
+                                    <span class="badge rounded-3 bg-light text-secondary fw-medium px-2 py-2">
+                                        #<?= $p['id'] ?? '0' ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="fw-bold text-dark"><?= $p['nombre_plan'] ?? 'Sin Nombre' ?></div>
+                                    <div class="text-muted small">Plan de Seguro Activo</div>
+                                </td>
+                                <td>
+                                    <span class="d-flex align-items-center gap-2">
+                                        <i class="bi bi-building-check text-primary"></i>
+                                        <?= $p['compania'] ?? 'Desconocida' ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="fw-bold text-success">
+                                        $<?= isset($p['suma_asegurada']) ? number_format($p['suma_asegurada'], 2) : '0.00' ?>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button class="btn btn-icon btn-light rounded-circle border shadow-sm" onclick="editarPlan(<?= $p['id'] ?>)" title="Editar">
+                                            <i class="bi bi-pencil-square text-primary"></i>
+                                        </button>
+                                        <button class="btn btn-icon btn-light rounded-circle border shadow-sm" onclick="eliminarPlan(<?= $p['id'] ?>)" title="Eliminar">
+                                            <i class="bi bi-trash3 text-danger"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php 
+                                endforeach; 
+                            else: 
+                        ?>
+                            <tr>
+                                <td colspan="5" class="text-center py-5">
+                                    <div class="py-4">
+                                        <i class="bi bi-folder2-open display-1 text-light"></i>
+                                        <h5 class="mt-3 text-muted">No se encontraron planes</h5>
+                                        <p class="text-muted small">Comienza agregando uno nuevo con el botón superior.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div> </div> </div> </div> <?php include 'modal_plan.php'; ?>
 
-    <div class="clinicas-grid">
-        <?php foreach ($clinicas as $cl): ?>
-            <label class="item-clinica">
-                <input type="checkbox" class="red-clinica" name="red_clinicas[INDEX][]" value="<?= $cl['id'] ?>">
-                <?= $cl['nombre'] ?>
-            </label>
-        <?php endforeach; ?>
-    </div>
-</div>
-            
-        
-        <div class="form-row">
-        <div class="campo-form">
-            <label>Deducible Ambulatorio</label>
-            <input type="number" class="red-ambulatorio" name="red_ambulatorio[]"required>
-        </div>
-
-        <div class="campo-form">
-            <label>Deducible Hospitalario</label>
-            <input type="number" class="red-hospitalario" name="red_hospitalario[]"required>
-        </div>
-       
-        
-
-        <hr>
-         </div>
-         </div>
-        
-</template>
-
-<!-- ========================= -->
-<!-- TEMPLATE PRECIO -->
-<!-- ========================= -->
-
-<template id="template-precio">
-    <div class="bloque-precio fila-precio">
-
-        <input type="number" name="edad_inicio[]" min="0" max="100" step="1" placeholder="Edad inicio" required>
-
-        <label class="check-rango">
-            <input type="checkbox" class="toggle-rango">
-            Rango
-        </label>
-
-       <input type="number" name="edad_fin[]" min="0" max="100" step="1"placeholder="Edad Fin" disabled>
-
-        <input type="number" step="0.01" name="precio[]" placeholder="Precio" required>
-
-        <button type="button" class="btn-eliminar-precio">❌</button>
-
-    </div>
-</template>
+<script>
+    const BASE_URL = '<?= BASE_URL ?>';
+</script>
+<script src="<?= BASE_URL ?>assets/js/planes/planes.js"></script>

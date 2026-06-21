@@ -1,176 +1,68 @@
-/* ====== ENCABEZADO SUPERIOR ====== */
-.topnav {
-    width: 100%;
-    background: linear-gradient(90deg, #1a4bd8, #1556f0);
-    color: #fff;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-.nav-logo h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0;
-    color: #fff;
-}
-
-.nav-logo h4 {
-    margin: 2px 0 0;
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.85);
-}
-
-.nav-container {
-    width: 95%;
-    max-width: 1300px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* ====== MENÚ PRINCIPAL ====== */
-.nav-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: #fff;
-    font-weight: 500;
+/* Estilos personalizados para el Sidebar Moderno */
+.sidebar-link {
+    transition: all 0.2s ease-in-out;
+    color: #6c757d;
     text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    transition: .25s ease;
-    font-size: 0.95rem;
+    font-weight: 500;
+    /* Redondeado circular para que la sombra/fondo sea tipo píldora */
+    border-radius: 50px !important; 
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
 }
 
-/* Estilo de pestaña activa estilo Canva */
-.nav-links a.active {
-    background: #ffffff;
-    color: #1556f0;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+.sidebar-link:hover:not(.active-link) {
+    background-color: #f8f9fa; /* Fondo gris muy suave */
+    color: #0d6efd;
+    transform: translateX(5px); /* Movimiento suave a la derecha */
 }
 
-/* Hover */
-.nav-links a:hover {
-    background: rgba(255,255,255,0.2);
+.active-link {
+    /* Fondo azul con transparencia y bordes circulares */
+    background-color: rgba(13, 110, 253, 0.1) !important; 
+    color: #0d6efd !important;
+    font-weight: 600 !important;
+    border-radius: 50px !important;
 }
 
-/* Cerrar sesión */
-.nav-links a.logout {
-    background: #ff4d4d;
-    color: #fff !important;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-weight: 600;
+/* Ajuste de los títulos de sección */
+.sidebar-heading {
+    font-size: 0.75rem;
+    letter-spacing: 0.8px;
+    padding-left: 20px; /* Alineado con los iconos */
 }
 
-.nav-links a.logout:hover {
-    background: #e64545;
+/* --- NAVBAR SUPERIOR --- */
+
+/* Flecha del dropdown */
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* ====== MENÚ RESPONSIVE ====== */
-.menu-icon {
-    display: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #fff;
+/* Rotación de la flecha al abrir */
+.dropdown.show .dropdown-toggle::after {
+    transform: rotate(180deg);
 }
 
-#menu-toggle {
-    display: none;
-}
-/*------------FOOTER TOAST------------*/
-/* TOAST */
-
-#toast-container{
-position:fixed;
-top:100px;
-right:20px;
-z-index:2000;
-display:flex;
-flex-direction:column;
-gap:10px;
+/* Efecto en el avatar con bordes circulares */
+.dropdown-toggle:hover img {
+    border-color: #0d6efd !important;
+    /* Sombra circular alrededor del avatar */
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15); 
+    transition: all 0.3s ease;
 }
 
-.toast{
-min-width:250px;
-padding:12px 16px;
-border-radius:8px;
-color:white;
-font-size:14px;
-box-shadow:0 4px 12px rgba(0,0,0,0.15);
-animation:fadeIn 0.3s ease;
-}
-
-/* tipos */
-
-.toast.success{
-background:#22c55e;
-}
-
-.toast.error{
-background:#ef4444;
-}
-
-/* animacion */
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(-10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-/*-------------*/
-
-@media (max-width: 900px) {
-
-    .menu-icon {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        width: 100%;
-        flex-direction: column;
-        background: #ffffff;
-        padding: 20px 0;
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        gap: 10px;
-        display: none;
-    }
-
-    .nav-links a {
-        color: #1556f0;
-        width: 100%;
-        text-align: center;
-        padding: 12px 0;
-        border-radius: 0;
-    }
-
-    #menu-toggle:checked + .menu-icon + .nav-links {
-        display: flex;
-    }
-}
-
-/* ====== ESPACIO DEL CONTENIDO ====== */
-.main-content {
-    width: 95%;
-    max-width: 1280px;
-    margin: 30px auto;
+/* Ajuste para que el dropdown de Bootstrap se vea moderno */
+.dropdown-menu {
+    border-radius: 15px; /* Bordes suaves para el menú */
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }

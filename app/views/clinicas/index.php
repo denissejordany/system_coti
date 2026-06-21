@@ -1,135 +1,87 @@
-<h2>🏥 Gestión de Clínicas</h2>
-
-<div class="contenedor-clinicas">
-
-<div class="card">
-
-<form id="formClinica" method="POST" action="<?= BASE_URL ?>clinica/registrarClinica">
-
-    <div class="campo-form">
-        <label>Nombre</label>
-        <input type="text" name="nombre" required>
+<div class="p-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="card-title text-secondary m-0">Listado de Clínicas</h5>
     </div>
 
-    <div class="campo-form">
-        <label>Sede</label>
-        <input type="text" name="sede" required>
-    </div>
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        
+        <div class="card-header bg-white border-0 p-4 pb-0">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold text-dark m-0">Gestión de Clínicas</h5>
+                    <p class="text-muted small m-0">Administra y organiza los centros médicos afiliados al sistema.</p>
+                </div>
+                <button class="btn btn-primary rounded-pill px-4 shadow-sm d-flex align-items-center gap-2" onclick="abrirModalCrearClinica()">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Nueva Clínica</span>
+                </button>
+            </div>
+        </div>
 
-    <button type="submit">Registrar</button>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-3 text-uppercase text-muted small fw-bold border-0" style="width: 80px;">ID</th>
+                            <th class="text-uppercase text-muted small fw-bold border-0">Detalles de la Clínica</th>
+                            <th class="text-uppercase text-muted small fw-bold border-0">Sede / Ubicación</th>
+                            <th class="text-center text-uppercase text-muted small fw-bold border-0">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border-top-0">
+                        <?php 
+                            $clinicas = $clinicas ?? []; 
+                            if (!empty($clinicas)): 
+                                foreach ($clinicas as $c): 
+                        ?>
+                            <tr class="transition-all">
+                                <td class="ps-3">
+                                    <span class="badge rounded-3 bg-light text-secondary fw-medium px-2 py-2">
+                                        #<?= $c['id'] ?? '0' ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="fw-bold text-dark"><?= $c['nombre'] ?? 'Sin Nombre' ?></div>
+                                    <div class="text-muted small">Entidad Médica Afiliada</div>
+                                </td>
+                                <td>
+                                    <span class="d-flex align-items-center gap-2 text-secondary">
+                                        <i class="bi bi-geo-alt text-primary"></i>
+                                        <?= $c['sede'] ?? 'No especificada' ?>
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button class="btn btn-icon btn-light rounded-circle border shadow-sm" onclick="editarClinica(<?= $c['id'] ?>)" title="Editar">
+                                            <i class="bi bi-pencil-square text-primary"></i>
+                                        </button>
+                                        <button class="btn btn-icon btn-light rounded-circle border shadow-sm" onclick="eliminarClinica(<?= $c['id'] ?>)" title="Eliminar">
+                                            <i class="bi bi-trash3 text-danger"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php 
+                                endforeach; 
+                            else: 
+                        ?>
+                            <tr>
+                                <td colspan="4" class="text-center py-5">
+                                    <div class="py-4">
+                                        <i class="bi bi-hospital display-1 text-light"></i>
+                                        <h5 class="mt-3 text-muted">No se encontraron clínicas</h5>
+                                        <p class="text-muted small">Comienza agregando una nueva con el botón superior.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div> </div> </div> </div> <?php include 'modal_clinica.php'; ?>
 
-</form>
-
-</div>
-
-<h3>Listado de Clínicas</h3>
-<div class="buscador-tabla">
-
-<input 
-type="text" 
-id="buscarClinica" 
-placeholder="🔎 Buscar clínica...">
-
-</div>
-<div class="card tabla-responsive">
-
-<table class="tabla-clinicas">
-
-<thead>
-<tr>
-<th>ID</th>
-<th>Nombre</th>
-
-<th>Sede</th>
-<th>Acciones</th>
-</tr>
-</thead>
-
-<tbody>
-
-<?php foreach ($clinicas as $c): ?>
-
-<tr>
-<td><?= $c['id'] ?></td>
-<td><?= $c['nombre'] ?></td>
-
-<td><?= $c['sede'] ?></td>
-
-<td class="acciones">
-
-<button class="btn-editar" onclick="editarClinica(<?= $c['id'] ?>)" title="Editar">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<button 
-class="btn-eliminar"
-title="Eliminar"
-onclick="confirmarEliminar(<?= $c['id'] ?>)">
-<i class="fas fa-trash"></i>
-</button>
-
-</td>
-</tr>
-<!---MODAAAAAAL EDITAR --->
-<div id="modalClinica" class="modal">
-
-<div class="modal-content">
-
-<h3>Editar Clínica</h3>
-
-<form id="formEditarClinica">
-
-<input type="hidden" name="id" id="edit_id">
-
-<div class="campo-form">
-<label>Nombre</label>
-<input type="text" name="nombre" id="edit_nombre" required>
-</div>
-
-<div class="campo-form">
-<label>Sede</label>
-<input type="text" name="sede" id="edit_sede" required>
-</div>
-
-<div class="modal-actions">
-<button type="submit" class="btn-actualizar">Actualizar</button>
-<button type="button" class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
-</div>
-
-</form>
-
-</div>
-</div>
-
-<?php endforeach; ?>
-
-</tbody>
-</table>
-<div class="paginacion" id="paginacionClinicas"></div>
-</div>
-
-<!------------MODAL CONFIRMACION------->
-<div id="modalConfirmacion" class="modal">
-
-<div class="modal-content modal-confirmacion">
-
-<h3 id="tituloConfirmacion">Confirmar acción</h3>
-
-<p id="mensajeConfirmacion">
-¿Seguro que deseas realizar esta acción?
-</p>
-
-<div class="modal-actions">
-
-<button id="btnCancelarConfirmacion" class="btn-cancelar">
-Cancelar
-</button>
-
-<button id="btnAceptarConfirmacion" class="btn-confirmar">
-Confirmar
-</button>
-
-</div>
-
-</div>
-</div>
+<script>
+    const BASE_URL = '<?= BASE_URL ?>';
+</script>
+<script src="<?= BASE_URL ?>assets/js/clinicas/clinicas.js"></script>
